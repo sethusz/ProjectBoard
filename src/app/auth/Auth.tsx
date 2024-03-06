@@ -31,6 +31,7 @@ export function Auth() {
 			authService.main(isLoginForm ? 'login' : 'register', data),
 		onSuccess() {
 			toast.success('Successfully login!')
+
 			reset()
 			push(DASHBOARD_PAGES.HOME)
 		}
@@ -47,6 +48,14 @@ export function Auth() {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<Heading title='Auth' />
+
+				{/* <Field
+					id='name'
+					label='name:'
+					placeholder='Enter name'
+					extra='mb-4'
+					{...register('name')}
+				/> */}
 
 				<Field
 					id='email'
