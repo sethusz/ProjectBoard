@@ -22,10 +22,10 @@ export function Sidebar() {
 						size={38}
 					/>
 					<span className='text-2xl font-bold relative'>
-						RED Planner
-						<span className='absolute -top-1 -right-6 text-xs opacity-40 rotate-[18deg] font-normal'>
+						Board
+						{/* <span className='absolute -top-1 -right-6 text-xs opacity-40 rotate-[18deg] font-normal'>
 							beta
-						</span>
+						</span> */}
 					</span>
 				</Link>
 				<div className='p-3 relative'>
@@ -46,7 +46,7 @@ export function Sidebar() {
 					rel='noreferrer'
 					className='hover:text-primary text-brand-300 transition-colors'
 				>
-					RED Group
+					Board
 				</a>
 				. <br /> All rights reserved.
 			</footer>
