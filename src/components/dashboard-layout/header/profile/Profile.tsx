@@ -4,29 +4,36 @@ import Loader from '@/components/ui/Loader'
 
 import { useProfile } from '@/hooks/useProfile'
 import { useEffect, useState } from 'react';
-import cls from '../header.module.scss'
-import BurgerMenu from '../burgerMenu';
+import cls from '.././header.module.scss'
+import BurgerMenu from '.././burgerMenu';
 
 export function Profile() {
 	const { data, isLoading } = useProfile()
 
 
-	const [isTinyScreen, setIsTinyScreen] = useState(window.innerWidth < 800);
+	const [isTinyScreen, setIsTinyScreen] = useState(false);
 	const [isActive, setIsActive] = useState(false);
 
 	const toggleMenu = () => {
 	  setIsActive(!isActive);
 	};
   
-	useEffect(() => {
-		function handleResize() {
-			setIsTinyScreen(window.innerWidth < 800);
-		}
 
+	useEffect(() => {
+		// This function will only be called on the client side, where `window` is defined.
+		const handleResize = () => {
+		  setIsTinyScreen(window.innerWidth < 800);
+		};
+		
+		// Set the initial value
+		handleResize();
+	
+		// Set up event listener
 		window.addEventListener('resize', handleResize);
-		// Очищаем обработчик, когда компонент будет размонтирован
+	
+		// Clean up event listener on component unmount
 		return () => window.removeEventListener('resize', handleResize);
-	}, []);
+	  }, []);
 
 	return (
 		<div className='absolute top-big-layout right-big-layout'>
