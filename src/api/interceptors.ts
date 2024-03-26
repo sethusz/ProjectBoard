@@ -8,12 +8,13 @@ import {
 import { authService } from '@/services/auth.service'
 
 const options: CreateAxiosDefaults = {
-	baseURL: 'http://localhost:4200/api',
+	baseURL: 'https://app-planner-back-end.onrender.com/api',
 	headers: {
 		'Content-Type': 'application/json'
 	},
 	withCredentials: true
 }
+
 
 const axiosClassic = axios.create(options)
 const axiosWithAuth = axios.create(options)

@@ -12,7 +12,9 @@ export function TimeBlocking() {
 
 	return (
 		<FormProvider {...methods}>
-			<div className='grid grid-cols-2 gap-12'>
+			<div className='grid-cols-2 gap-12
+			flex flex-col-reverse items-center 
+			sm:grid sm:flex-row sm:items-start'>
 				<TimeBlockingList />
 				<TimeBlockingForm />
 			</div>

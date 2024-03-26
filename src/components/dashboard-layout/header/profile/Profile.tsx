@@ -3,25 +3,65 @@
 import Loader from '@/components/ui/Loader'
 
 import { useProfile } from '@/hooks/useProfile'
+import { useEffect, useState } from 'react';
+import cls from '../header.module.scss'
+import BurgerMenu from '../burgerMenu';
 
 export function Profile() {
 	const { data, isLoading } = useProfile()
+
+
+	const [isTinyScreen, setIsTinyScreen] = useState(window.innerWidth < 800);
+	const [isActive, setIsActive] = useState(false);
+
+	const toggleMenu = () => {
+	  setIsActive(!isActive);
+	};
+  
+	useEffect(() => {
+		function handleResize() {
+			setIsTinyScreen(window.innerWidth < 800);
+		}
+
+		window.addEventListener('resize', handleResize);
+		// Очищаем обработчик, когда компонент будет размонтирован
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	return (
 		<div className='absolute top-big-layout right-big-layout'>
 			{isLoading ? (
 				<Loader />
 			) : (
-				<div className='flex items-center'>
-					<div className='text-right mr-3'>
-						<p className='font-bold -mb-1'>{data?.user.name}</p>
-						<p className='text-sm opacity-40'>{data?.user.email}</p>
+				<>
+					<div className='flex items-center 
+				xs:flex-row lg:mt-[0]
+				tiny:flex-col tiny:gap-[5px] tiny:mt-[-10px]'>
+						<div className='text-right mr-3'>
+							<p className='font-bold -mb-1'>
+								{data?.user?.name && (isTinyScreen && data.user.name.length > 10 ? `${data.user.name.substring(0, 10)}...` : data.user.name)}
+							</p>
+							<p className='text-sm opacity-40'>
+								{data?.user?.email && (isTinyScreen && data.user.email.length > 10 ? `${data.user.email.substring(0, 10)}...` : data.user.email)}
+							</p>
+						</div>
+
+						<div className='w-10 h-10 justify-center items-center text-2xl text-white bg-white/20 rounded uppercase
+					hidden lg:flex'>
+							{data?.user.name?.charAt(0) || 'A'}
+						</div>
 					</div>
 
-					<div className='w-10 h-10 flex justify-center items-center text-2xl text-white bg-white/20 rounded uppercase'>
-						{data?.user.name?.charAt(0) || 'A'}
+					<div className='block lg:hidden'>
+						<div className={`${cls.burger} ${isActive ? `${cls.burger__active}` : ''}`} onClick={toggleMenu}>
+							<div className={`${cls.burger__line} ${cls.burger__line__1}`}></div>
+							<div className={`${cls.burger__line} ${cls.burger__line__2}`}></div>
+							<div className={`${cls.burger__line} ${cls.burger__line__3}`}></div>
+						</div>
+						{isActive && <BurgerMenu setIsActive={setIsActive} isActive={isActive} />}
 					</div>
-				</div>
+
+				</>
 			)}
 		</div>
 	)

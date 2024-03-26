@@ -12,6 +12,15 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			screens: {
+				tiny: '320px',
+				xs: '480px',
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
+				'2xl': '1536px'
+			},
 			colors: COLORS,
 			spacing: {
 				0.5: '0.12rem',

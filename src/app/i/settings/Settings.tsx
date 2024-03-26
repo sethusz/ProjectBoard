@@ -29,12 +29,13 @@ export function Settings() {
 	}
 
 	return (
-		<div>
+		<div className='flex justify-center'>
 			<form
-				className='w-2/4'
+				className=''
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<div className='grid grid-cols-2 gap-10'>
+				<div className='grid-cols-2 gap-10 
+				tine:flex sm:grid'>
 					<div>
 						<Field
 							id='email'

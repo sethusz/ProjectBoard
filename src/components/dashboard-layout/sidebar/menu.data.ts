@@ -14,7 +14,7 @@ export const MENU: IMenuItem[] = [
 	{
 		icon: LayoutDashboard,
 		link: DASHBOARD_PAGES.HOME,
-		name: 'Dashboard'
+		name: 'Statistics'
 	},
 	{
 		icon: KanbanSquare,

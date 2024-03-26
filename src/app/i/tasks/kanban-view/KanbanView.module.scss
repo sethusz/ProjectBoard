@@ -6,6 +6,11 @@
 		@apply w-[17rem];
 		white-space: nowrap;
 		min-height: 79vh;
+		
+		@media screen and (max-width: 768px) {
+			@apply w-[13rem];
+			
+		}
 
 		.card {
 			@apply rounded border border-border mt-5 p-4 relative bg-[#0e0f0f];

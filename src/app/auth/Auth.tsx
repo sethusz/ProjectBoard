@@ -22,6 +22,7 @@ export function Auth() {
 	})
 
 	const [isLoginForm, setIsLoginForm] = useState(false)
+    const [errorMessages, setErrorMessages] = useState([]); 
 
 	const { push } = useRouter()
 
@@ -34,29 +35,28 @@ export function Auth() {
 
 			reset()
 			push(DASHBOARD_PAGES.HOME)
+		},
+		onError: (error: any) => {
+			const errors = error?.toString().split(',').map((msg:string) => 
+				msg.trim().charAt(0).toUpperCase() + msg.trim().slice(1)
+			);
+			setErrorMessages(errors);
 		}
 	})
 
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
+        setErrorMessages([]);
+
 		mutate(data)
 	}
 
 	return (
-		<div className='flex min-h-screen'>
+		<div className='flex min-h-screen max-w-[350px] mx-[auto]'>
 			<form
-				className='w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout'
+				className=' m-auto shadow bg-sidebar rounded-xl p-layout'
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<Heading title='Auth' />
-
-				{/* <Field
-					id='name'
-					label='name:'
-					placeholder='Enter name'
-					extra='mb-4'
-					{...register('name')}
-				/> */}
-
 				<Field
 					id='email'
 					label='Email:'
@@ -78,6 +78,16 @@ export function Auth() {
 					})}
 					extra='mb-6'
 				/>
+
+				{errorMessages.length > 0 && (
+					<div className="pb-[20px] text-center text-[18px] text-red-500">
+						{errorMessages.map((msg, index) => (
+							<div key={index}>{msg}</div>
+						))}
+					</div>
+				)}
+
+
 
 				<div className='flex items-center gap-5 justify-center'>
 					<Button onClick={() => setIsLoginForm(true)}>Login</Button>

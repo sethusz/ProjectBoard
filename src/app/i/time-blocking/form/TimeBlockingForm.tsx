@@ -17,7 +17,7 @@ export function TimeBlockingForm() {
 	const existsId = watch('id')
 
 	const { updateTimeBlock } = useUpdateTimeBlock(existsId)
-	const { createTimeBlock, isPending } = useCreateTimeBlock()
+	const { createTimeBlock, isPending, error } = useCreateTimeBlock()
 
 	const onSubmit: SubmitHandler<TypeTimeBlockFormState> = data => {
 		const { color, id, ...rest } = data
@@ -44,7 +44,7 @@ export function TimeBlockingForm() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className='w-3/5'
+			className=''
 		>
 			<Field
 				{...register('name', {
@@ -67,6 +67,8 @@ export function TimeBlockingForm() {
 				isNumber
 				extra='mb-4'
 			/>
+
+			{error && <p className='text-red-500 text-center py-[15px]'>{error}</p>}
 
 			<div>
 				<span className='inline-block mb-1.5'>Color:</span>

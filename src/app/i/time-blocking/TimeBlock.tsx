@@ -37,7 +37,7 @@ export function TimeBlock({ item }: { item: ITimeBlockResponse }) {
 					>
 						<GripVertical className={styles.grip} />
 					</button>
-					<div>
+					<div className="mr-[10px]">
 						{item.name}{' '}
 						<i className='text-xs opacity-50'>({item.duration} min.)</i>
 					</div>

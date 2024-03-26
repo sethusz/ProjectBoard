@@ -26,7 +26,7 @@ export function Pomodoro() {
 	)
 
 	return (
-		<div className='relative w-80 text-center'>
+		<div className='flex justify-center flex-col relative w-full text-center'>
 			{!isLoading && (
 				<div className='text-7xl font-semibold'>
 					{formatTime(timerState.secondsLeft)}
@@ -65,7 +65,8 @@ export function Pomodoro() {
 			) : (
 				<Button
 					onClick={() => mutate()}
-					className='mt-1'
+					className='mt-1 mx-[auto]
+					tiny:w-[80%] xs:w-[280px]'
 					disabled={isPending}
 				>
 					Create session

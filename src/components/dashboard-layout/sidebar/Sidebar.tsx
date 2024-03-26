@@ -11,7 +11,8 @@ import { MENU } from './menu.data'
 
 export function Sidebar() {
 	return (
-		<aside className='border-r border-r-border h-full bg-sidebar flex flex-col justify-between'>
+		<div className='hidden border-r border-r-border h-full bg-sidebar flex-col justify-between
+		lg:flex'>
 			<div>
 				<Link
 					href='/'
@@ -50,6 +51,6 @@ export function Sidebar() {
 				</a>
 				. <br /> All rights reserved.
 			</footer>
-		</aside>
+		</div>
 	)
 }

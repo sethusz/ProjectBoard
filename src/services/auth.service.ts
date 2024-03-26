@@ -3,17 +3,25 @@ import { IAuthForm, IAuthResponse } from '@/types/auth.types'
 import { axiosClassic } from '@/api/interceptors'
 
 import { removeFromStorage, saveTokenStorage } from './auth-token.service'
+import axios from 'axios';
 
 export const authService = {
 	async main(type: 'login' | 'register', data: IAuthForm) {
-		const response = await axiosClassic.post<IAuthResponse>(
-			`/auth/${type}`,
-			data
-		)
+		try {
+			const response = await axiosClassic.post<IAuthResponse>(`/auth/${type}`, data);
 
-		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+			if (response.data.accessToken) {
+				saveTokenStorage(response.data.accessToken);
+			}
 
-		return response
+			return response;
+		} catch (error: unknown) {
+			if (axios.isAxiosError(error) && error.response) {
+				throw error.response.data.message;
+			} else {
+				throw new Error('An unexpected error occurred');
+			}
+		}
 	},
 
 	async getNewTokens() {

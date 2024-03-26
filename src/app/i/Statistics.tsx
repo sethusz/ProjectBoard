@@ -7,7 +7,9 @@ export default function Statistics() {
     const { data, isLoading } = useProfile()
 
     return isLoading ? <Loader /> : (
-        <div className="grid grid-cols-4 gap-12 mt-7">
+        <div className="grid gap-12 mt-7
+        md:grid-cols-4
+        ">
             {data?.statistics.length ? data.statistics.map(statistic => (
 
                 <div
@@ -21,4 +23,4 @@ export default function Statistics() {
             )) : <div>Statisticks not loader</div>}
         </div>
     )
-}
+} 
