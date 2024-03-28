@@ -28,7 +28,7 @@ export function SingleSelect({
 
 	return (
 		<div
-			className={cn('relative min-w-36', {
+			className={cn('relative min-w-[auto] sm:min-w-36', {
 				'w-max': isColorSelect
 			})}
 			ref={ref}
@@ -53,7 +53,7 @@ export function SingleSelect({
 			</button>
 			{value && (
 				<button
-					className='absolute top-0 right-0 opacity-30 hover:opacity-100 transition-opacity'
+					className='absolute -top-1.5 opacity-30 hover:opacity-100 transition-opacity'
 					onClick={e => {
 						e.preventDefault()
 						onChange('')

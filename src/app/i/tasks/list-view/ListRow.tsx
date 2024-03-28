@@ -62,7 +62,9 @@ export function ListRow({ item, setItems }: IListRow) {
 					<TransparentField {...register('name')} />
 				</span>
 			</div>
-			<div>
+
+			<div className='flex justify-center 
+			sm:block'>
 				<Controller
 					control={control}
 					name='createdAt'
@@ -74,7 +76,9 @@ export function ListRow({ item, setItems }: IListRow) {
 					)}
 				/>
 			</div>
-			<div className='capitalize'>
+
+			<div className='capitalize flex justify-center
+			sm:block'>
 				<Controller
 					control={control}
 					name='priority'
@@ -90,7 +94,8 @@ export function ListRow({ item, setItems }: IListRow) {
 					)}
 				/>
 			</div>
-			<div>
+			<div className='flex justify-center 
+			sm:block'>
 				<button
 					onClick={() =>
 						item.id ? deleteTask(item.id) : setItems(prev => prev?.slice(0, -1))

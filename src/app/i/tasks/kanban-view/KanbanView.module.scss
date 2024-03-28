@@ -1,15 +1,16 @@
 .board {
 	@apply grid grid-flow-col gap-8 w-full;
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch; // Improves scrolling on iOS devices
 
 	.column {
 		@apply w-[17rem];
 		white-space: nowrap;
 		min-height: 79vh;
-		
+
 		@media screen and (max-width: 768px) {
 			@apply w-[13rem];
-			
+
 		}
 
 		.card {
@@ -23,23 +24,23 @@
 				@apply flex items-center mb-2;
 				font-size: 93%;
 
-				> input:last-child {
+				>input:last-child {
 					@apply ml-2;
 				}
 			}
 
 			.cardBody,
-			.cardBody > div > button > span,
-			.cardBody > div > div > button > span {
+			.cardBody>div>button>span,
+			.cardBody>div>div>button>span {
 				font-size: 83%;
 			}
 
 			.cardBody {
-				> div {
+				>div {
 					@apply mb-2.5 w-max;
 					min-width: 6rem;
 
-					> button:last-child {
+					>button:last-child {
 						@apply opacity-15;
 					}
 				}
