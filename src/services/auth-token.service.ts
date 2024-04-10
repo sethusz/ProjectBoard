@@ -12,7 +12,7 @@ export const getAccessToken = () => {
 
 export const saveTokenStorage = (accessToken: string) => {
 	Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-		domain: 'plotterhub.site',
+		domain: 'https://plotterhub.site',
 		sameSite: 'strict',
 		expires: 1
 	})
