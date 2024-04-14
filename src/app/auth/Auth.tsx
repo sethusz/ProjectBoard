@@ -41,8 +41,10 @@ export function Auth() {
 			push(DASHBOARD_PAGES.HOME)
 		},
 		onError: (error: any) => {
-			const errors = error?.toString().split(',').map((msg: string) => msg.trim().charAt(0).toUpperCase() + msg.trim().slice(1))
-			setErrorMessages(errors)
+			// Ensure errorMessages is always an array
+			const errors = error?.toString().split(',') || [];
+			const formattedErrors = errors.map((msg: string) => msg.trim().charAt(0).toUpperCase() + msg.trim().slice(1));
+			setErrorMessages(formattedErrors);
 		},
 	})
 
@@ -120,3 +122,4 @@ export function Auth() {
 		</div>
 	)
 }
+
